@@ -24,6 +24,27 @@
     </nav>
 </header>
 
+<h1>Каталог задач</h1>
+
+    <form method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Поиск по названию...">
+        <button type="submit">Найти</button>
+    </form>
+
+    <hr>
+
+    {% if products %}
+        {% for item in products %}
+            <div style="margin-bottom: 20px;">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+                <p><i>{{ item.created_at }}</i></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Ничего не найдено.</p>
+    {% endif %}
+
 </body>
 
 </html>
