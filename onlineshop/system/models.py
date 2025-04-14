@@ -1,6 +1,6 @@
 from django.db import models
 
-class system(models.Model):
+class catalog(models.Model):
     title = models.CharField(max_length=255) # Название задачи
     description = models.TextField(blank=True, null=True) # Описание
     created_at = models.DateTimeField(auto_now_add=True) # Дата создания
