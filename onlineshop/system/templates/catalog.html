@@ -17,10 +17,10 @@
  <header>
     <h1>Online-shop</h1>
     <nav class="navbar">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'catalog' %}">Catalog</a>
-        <a href="{% url 'cart' %}">Cart</a>
-        <a href="{% url 'register' %}">Register</a>
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'catalog' %}">Catalog</a>
+      <a href="{% url 'cart' %}">Cart</a>
+      <a href="{% url 'register' %}" class="register-button">Register</a>
     </nav>
     <h1>{% if category %}Категория: {{ category.name }}{% else %}Все товары{% endif %}</h1>
 </header>
