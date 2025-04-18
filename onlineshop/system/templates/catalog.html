@@ -16,12 +16,13 @@
 
  <header>
     <h1>Online-shop</h1>
-    <nav>
+    <nav class="navbar">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'catalog' %}">Catalog</a>
         <a href="{% url 'cart' %}">Cart</a>
         <a href="{% url 'register' %}">Register</a>
     </nav>
+    <h1>{% if category %}Категория: {{ category.name }}{% else %}Все товары{% endif %}</h1>
 </header>
 
 <h1>Каталог задач</h1>
@@ -32,6 +33,21 @@
     </form>
 
     <hr>
+
+    <main class="container">
+        {% for product in products %}
+          <div class="card">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description|truncatewords:20 }}</p>
+            <strong>{{ product.price }} ₽</strong>
+          </div>
+        {% empty %}
+          <p>Нет товаров.</p>
+        {% endfor %}
+      </main>
 
     {% if products %}
         {% for item in products %}
