@@ -4,26 +4,53 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Online-shop</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
- <header>
-    <h1>Online-shop</h1>
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'catalog' %}">Catalog</a>
-        <a href="{% url 'cart' %}">Cart</a>
-        <a href="{% url 'register' %}">Register</a>
-    </nav>
-</header>
+    <header>
+        <div class="container">
+            <h1 class="logo">MyShop</h1>
+            <nav>
+                <ul>
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'catalog' %}">Catalog</a>
+                    <a href="{% url 'cart' %}">Cart</a>
+                    <a href="{% url 'register' %}">Register</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main>
+      <h2>Категории</h2>
+      <div class="categories">
+        {% for category in categories %}
+          <a href="{% url 'category_products' category.id %}">
+            <div class="category-card">
+              {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+              {% else %}
+                <p>[Без изображения]</p>
+              {% endif %}
+              <h3>{{ category.name }}</h3>
+            </div>
+          </a>
+        {% empty %}
+          <p>Категорий пока нет.</p>
+        {% endfor %}
+      </div>
+      </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MyShop. Все права защищены.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
