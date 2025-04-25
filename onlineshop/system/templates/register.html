@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="styles.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_file/style.css' %}">
 </head>
+
 <body>
     <header>
         <h1>Register for Updates</h1>
@@ -20,20 +21,27 @@
     </header>
 
     <main>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
+        <h2>Register</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Отображаем форму регистрации -->
+
+            {% if form.errors %}
+                <div class="error">
+                    <p>Пожалуйста, исправьте ошибки в форме.</p>
+                </div>
+            {% endif %}
             
             <button type="submit">Register</button>
         </form>
+
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Ссылка на страницу входа -->
     </main>
     
     <footer>
         <p>&copy; 2024 Museums in Kazakhstan</p>
     </footer>
 </body>
-<body class="register-page">
+
 </html>

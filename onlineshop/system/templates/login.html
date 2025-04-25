@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Login</h1>
+        <nav class="navbar">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'catalog' %}">Catalog</a>
+            <a href="{% url 'cart' %}">Cart</a>
+        </nav>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css_file/style.css' %}">
+    </header>
+
+    <main>
+        <h2>Login to your account</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Отображаем форму входа -->
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p> <!-- Ссылка на страницу регистрации -->
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyShop. Все права защищены.</p>
+    </footer>
+{% endblock %}

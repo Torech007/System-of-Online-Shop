@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MyShop{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css_file/style.css' %}">
+
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">MyShop</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'catalog' %}">Catalog</a></li>
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                    {% if user.is_authenticated %}
+                        <li><p>Welcome, {{ user.username }}!</p></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MyShop. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

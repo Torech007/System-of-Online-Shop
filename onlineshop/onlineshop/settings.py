@@ -63,8 +63,8 @@ ROOT_URLCONF = 'onlineshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'],  # Указываем путь к папке с шаблонами
+        'APP_DIRS': True,  # Позволяет Django искать шаблоны в папках каждого приложения
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
