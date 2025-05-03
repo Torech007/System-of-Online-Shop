@@ -3,25 +3,35 @@
 <html lang="ru">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Online-shop</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Shop</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
  <header>
-    <h1>Online-shop</h1>
-    <nav class="navbar">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'catalog' %}">Catalog</a>
-        <a href="{% url 'cart' %}">Cart</a>
-        <a href="{% url 'register' %}">Register</a>
-    </nav>
+    <div class="container">
+      <h1 class="logo">MyShop</h1>
+      <nav>
+          <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'catalog' %}">Catalog</a></li>
+              {% if user.is_authenticated %}
+              <a href="{% url 'cart' %}">Cart</a>
+              {% endif %}
+              {% if user.is_authenticated %}
+                  <li><p>Welcome, {{ user.username }}!</p></li>
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  <li><a href="{% url 'register' %}">Register</a></li>
+              {% endif %}
+          </ul>
+      </nav>
+  </div>
     <h1>{% if category %}Категория: {{ category.name }}{% else %}Все товары{% endif %}</h1>
 </header>
 
@@ -35,31 +45,28 @@
     <hr>
 
     <main class="container">
-        {% for product in products %}
-          <div class="card">
-            {% if product.image %}
-              <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            {% endif %}
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.description|truncatewords:20 }}</p>
-            <strong>{{ product.price }} ₽</strong>
-          </div>
-        {% empty %}
-          <p>Нет товаров.</p>
-        {% endfor %}
-      </main>
+  {% for product in products %}
+    <div class="card">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% endif %}
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description|truncatewords:20 }}</p>
+      <strong>{{ product.price }} ₽</strong>
 
-    {% if products %}
-        {% for item in products %}
-            <div style="margin-bottom: 20px;">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.description }}</p>
-                <p><i>{{ item.created_at }}</i></p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Ничего не найдено.</p>
-    {% endif %}
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+          {% csrf_token %}
+          <button type="submit">Добавить в корзину</button>
+        </form>
+      {% else %}
+        <p><a href="{% url 'login' %}">Войдите, чтобы добавить в корзину</a></p>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>Нет товаров.</p>
+  {% endfor %}
+</main>
 
 </body>
 

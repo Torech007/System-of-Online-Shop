@@ -1,11 +1,5 @@
 from django.contrib import admin
-from .models import catalog, Category, Product
-
-@admin.register(catalog)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at')
-    search_fields = ('title',) 
-    list_filter = ('created_at',)
+from .models import Category, Product
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

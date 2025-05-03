@@ -1,12 +1,5 @@
 from django.db import models
-
-class catalog(models.Model):
-    title = models.CharField(max_length=255) # Название задачи
-    description = models.TextField(blank=True, null=True) # Описание
-    created_at = models.DateTimeField(auto_now_add=True) # Дата создания
-    
-    def __str__(self):
-        return self.title
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -24,3 +17,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def get_total_price(self):
+        return self.product.price * self.quantity

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<header>
+    <h1>Оформление заказа</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'catalog' %}">Catalog</a>
+        <a href="{% url 'cart' %}">Cart</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Подтверждение заказа</h2>
+    {% if message %}
+    <p style="color: green;"><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    <p>Вы собираетесь оформить заказ на сумму <strong>${{ total }}</strong>.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Подтвердить заказ</button>
+    </form>
+</main>
+
+</body>
+</html>
