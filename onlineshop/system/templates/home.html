@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="ru">
@@ -13,28 +14,29 @@
 </head>
 
 <body>
+  <header class="bg-light py-3 border-bottom mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h4 mb-0">MyShop</h1>
 
-    <header>
-      <div class="container">
-        <h1 class="logo">MyShop</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'catalog' %}">Catalog</a></li>
-                {% if user.is_authenticated %}
-                <a href="{% url 'cart' %}">Cart</a>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li><p>Welcome, {{ user.username }}!</p></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
+        <nav class="d-flex align-items-center">
+            <a href="{% url 'home' %}" class="btn btn-outline-primary me-2">Главная</a>
+            <a href="{% url 'catalog' %}" class="btn btn-outline-primary me-2">Каталог</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'cart' %}" class="btn btn-outline-primary me-2">Корзина</a>
+
+                <a href="{% url 'profile' %}" class="ms-2">
+                  <img src="{% if user.userprofile.avatar %}{{ user.userprofile.avatar.url }}{% else %}/media/avatars/default_avatar.png{% endif %}" alt="Avatar" width="40" height="40" class="rounded-circle border border-secondary shadow-sm">
+
+                </a>
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger ms-2">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline-success me-2">Войти</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-secondary">Регистрация</a>
+            {% endif %}
         </nav>
     </div>
-    </header>
+</header>
+
 
     <main class="container mt-4">
       <h2 class="mb-4">Категории</h2>

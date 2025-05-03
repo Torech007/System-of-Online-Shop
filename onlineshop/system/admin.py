@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product,UserProfile
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,4 +10,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'category')
     search_fields = ('name', 'description')
-    list_filter = ('category', 'price')    
+    list_filter = ('category', 'price')  
+
+admin.site.register(UserProfile)  

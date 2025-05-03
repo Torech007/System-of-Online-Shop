@@ -19,16 +19,25 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+    
+
 @login_required
 def edit_profile(request):
+    user = request.user
+    profile = user.userprofile
+
     if request.method == 'POST':
-        form = UpdateProfileForm(request.POST, instance=request.user)
+        form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('profile')
     else:
-        form = UpdateProfileForm(instance=request.user)
+        form = UpdateProfileForm(instance=profile)
+
     return render(request, 'edit_profile.html', {'form': form})
+
+
+
 
 def login_view(request):
     if request.method == 'POST':
