@@ -1,3 +1,4 @@
+import random
 from .models import Category, Product, CartItem
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.views import LoginView, LogoutView
@@ -56,7 +57,12 @@ def logout_view(request):
 
 def home(request):
     categories = Category.objects.all()
-    return render(request, 'home.html', {'categories': categories})
+    all_products = list(Product.objects.all())
+    random_products = random.sample(all_products, min(len(all_products), 4))
+    return render(request, 'home.html', {
+        'categories': categories,
+        'random_products': random_products
+    })
 
 def catalog(request):
     query = request.GET.get('q', '') 
@@ -73,7 +79,10 @@ def category_products(request, category_id):
     products = Product.objects.filter(category=category)
     return render(request, 'catalog.html', {'products': products, 'category': category})    
 
-from django.contrib.auth.decorators import login_required
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})
+
 
 @login_required
 def cart_view(request):
