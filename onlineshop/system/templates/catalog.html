@@ -16,32 +16,30 @@
         <h1 class="h4 mb-0">MyShop</h1>
 
         <nav class="d-flex align-items-center">
-            <a href="{% url 'home' %}" class="btn btn-outline-primary me-2">Главная</a>
-            <a href="{% url 'catalog' %}" class="btn btn-outline-primary me-2">Каталог</a>
+            <a href="{% url 'home' %}" class="btn btn-outline-primary me-2">Home</a>
+            <a href="{% url 'catalog' %}" class="btn btn-outline-primary me-2">Catalog</a>
             {% if user.is_authenticated %}
-                <a href="{% url 'cart' %}" class="btn btn-outline-primary me-2">Корзина</a>
+                <a href="{% url 'cart' %}" class="btn btn-outline-primary me-2">Cart</a>
 
                 <a href="{% url 'profile' %}" class="ms-2">
-                    <img src="{% if user.userprofile.avatar %}{{ user.userprofile.avatar.url }}{% else %}/media/avatars/default_avatar.png{% endif %}" alt="Avatar"
-                         width="40" height="40"
-                         class="rounded-circle border border-secondary shadow-sm"
-                         style="object-fit: cover;">
+                  <img src="{% if user.userprofile.avatar %}{{ user.userprofile.avatar.url }}{% else %}/media/avatars/default_avatar.png{% endif %}" alt="Avatar" width="40" height="40" class="rounded-circle border border-secondary shadow-sm">
+
                 </a>
-                <a href="{% url 'logout' %}" class="btn btn-outline-danger ms-2">Выйти</a>
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger ms-2">Quit</a>
             {% else %}
-                <a href="{% url 'login' %}" class="btn btn-outline-success me-2">Войти</a>
-                <a href="{% url 'register' %}" class="btn btn-outline-secondary">Регистрация</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-success me-2">Log in</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-secondary">Register</a>
             {% endif %}
         </nav>
     </div>
 </header>
 
 <div class="container my-4">
-  <h2 class="mb-4">{% if category %}Категория: {{ category.name }}{% else %}Все товары{% endif %}</h2>
+  <h2 class="mb-4">All products</h2>
 
   <form method="get" class="mb-4 d-flex">
-    <input type="text" name="q" value="{{ query }}" class="form-control me-2" placeholder="Поиск по названию...">
-    <button type="submit" class="btn btn-primary">Найти</button>
+    <input type="text" name="q" value="{{ query }}" class="form-control me-2" placeholder="Search...">
+    <button type="submit" class="btn btn-primary">OK</button>
   </form>
 
   <div class="row">
@@ -59,23 +57,23 @@
             {% if user.is_authenticated %}
               <form method="post" action="{% url 'add_to_cart' product.id %}" class="mt-auto">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success w-100">Добавить в корзину</button>
+                <button type="submit" class="btn btn-success w-100">Add to Cart</button>
               </form>
             {% else %}
-              <a href="{% url 'login' %}" class="btn btn-outline-secondary w-100 mt-auto">Войдите, чтобы добавить</a>
+              <a href="{% url 'login' %}" class="btn btn-outline-secondary w-100 mt-auto">Log in for add to Cart</a>
             {% endif %}
           </div>
         </div>
       </div>
     {% empty %}
-      <p>Нет товаров.</p>
+      <p>Don't have products.</p>
     {% endfor %}
   </div>
 </div>
 
 <footer class="bg-dark text-white text-center py-3">
   <div class="container">
-    <p>&copy; 2025 MyShop. Все права защищены.</p>
+    <p>&copy; 2025 MyShop. All rights reserved.</p>
   </div>
 </footer>
 

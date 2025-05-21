@@ -121,7 +121,7 @@ def checkout(request):
 
     if request.method == 'POST':
         cart_items.delete()
-        return render(request, 'checkout.html', {'message': 'Спасибо за заказ!', 'total': 0})
+        return render(request, 'checkout.html', {'message': 'Thank you for your order!', 'total': 0})
 
     return render(request, 'checkout.html', {'cart_items': cart_items, 'total': total})
 
