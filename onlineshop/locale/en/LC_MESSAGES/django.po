@@ -1,0 +1,85 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MyShop 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-13 16:13+0500\n"
+"PO-Revision-Date: 2025-06-13 14:12+0500\n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: English <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Online Shop"
+msgstr "Online Shop"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Catalog"
+msgstr "Catalog"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Log in"
+msgstr "Log in"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "All rights reserved."
+msgstr "All rights reserved."
+
+msgid "Your Cart"
+msgstr "Your Cart"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Proceed to Checkout"
+msgstr "Proceed to Checkout"
+
+msgid "Your cart is empty."
+msgstr "Your cart is empty."
+
+msgid "All products"
+msgstr "All products"
+
+msgid "Search..."
+msgstr "Search..."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
+msgid "Log in to add to cart"
+msgstr "Log in to add to cart"
+
+msgid "No products available."
+msgstr "No products available."
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "No image"
+msgstr "No image"
+
+msgid "No categories available."
+msgstr "No categories available."
+
+msgid "Random Products"
+msgstr "Random Products"
