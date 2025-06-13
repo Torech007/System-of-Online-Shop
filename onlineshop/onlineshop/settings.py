@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-y3!snq*-ol-gj@d3x$s*p&if4mh$xi0c1zv^w#i48vs(5-#cpq
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    https://system-of-online-shop.onrender.com
+    'system-of-online-shop.onrender.com'
 ]
 
 
